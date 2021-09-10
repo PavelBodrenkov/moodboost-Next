@@ -1,0 +1,129 @@
+.icon-search:before {
+    content: "\E90E";
+}
+
+.active {
+    color:rgb(23, 187, 8);
+    font-weight: bold;
+}
+
+.header {
+    position: fixed;
+    min-width: 100%;
+    z-index: 13;
+    background-color: white;
+    box-shadow: 0 1px 4px rgba(205, 209, 218, 40%);
+    &__load {
+        width: 24px;
+        height: 24px;
+        background:transparent;
+    }
+    &__navbar {
+        min-height: 110px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 70px 0 70px;
+        &_logo_container {
+            list-style: none;
+            display: flex;
+            padding: 0;
+            align-items: center;
+        }
+        &_brand_image {
+            width: 150px!important;
+        }
+        &_menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            &_li_toggler {
+                 display: none;
+            }
+            &__logn_in {
+                &_button{
+                    border: none;
+                    width: 69px;
+                    height: 34px;
+                    background-color: #00B800;
+                    border-radius: 49px;
+                    font-size: 14px;
+                    padding: 0;
+                    color: white;
+                    font-family: 'Roboto', 'Arial', sans-serif;
+                    font-weight: normal;
+                    line-height: 21px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-decoration: none;
+                }
+            }
+            &_link {
+                color:black;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px;
+                border-radius: 50%;
+                font-size: 20px;
+                & Image {
+                    width: 19px;
+                    height: 19px;
+                }
+            }
+            &_li_search {
+                margin-right: 30px;
+            }
+        }
+        }
+    &__logo {
+        width:52px;
+        height: 78px;
+        margin-right: 20px;
+    }
+    &__header__navbar {
+        display: flex;
+        align-items: center;
+    }
+    &_pers {
+        margin-right: 20px;
+    }
+}
+
+.header__navbar_menu_link Image{
+    fill:#00B800;
+}
+
+@media screen and (max-width: 1400px) {
+    .header {
+       &__navbar {
+      
+        padding: 0 10px 0 10px;
+       }
+    }
+}
+
+@media screen and (max-width:767px) {
+    .header__navbar_menu_li_toggler {
+        display: inline-block;
+    }
+    .header__logo {
+        width:20px;
+        height: 32px;
+        margin-right: 20px;
+    }
+    .header__navbar_brand_image {
+        width: 108px!important
+    }
+    .header__navbar_menu_li_search {
+        margin-right: 0
+    }
+    .header__navbar_menu__logn_in_button {
+        width: 45px;
+    }
+}
+
