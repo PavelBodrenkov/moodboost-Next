@@ -6,21 +6,30 @@
   "scripts": {
     "dev": "next dev -p 3000",
     "build": "next build",
-    "start": "next start",
-    "export": "npm run build && next export"
+    "start": "next start -p 3001",
+    "export": "next export",
+    "deploy": "npm run build && npm run export"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
+    "axios": "^0.21.4",
     "bootstrap": "^5.0.0-beta3",
     "html-dom-parser": "^1.0.1",
+    "mobx": "^6.3.3",
+    "mobx-react-lite": "^3.2.1",
     "moment": "^2.29.1",
     "next": "^11.1.0",
     "react": "^17.0.2",
+    "react-copy-to-clipboard": "^5.0.4",
     "react-dom": "^17.0.2",
+    "react-facebook-login": "^4.1.1",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-router-dom": "^5.2.0",
+    "react-share": "^4.4.0",
+    "react-transition-group": "^2.9.0",
     "reactstrap": "^8.9.0",
     "sass": "^1.38.0"
   }

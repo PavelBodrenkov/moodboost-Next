@@ -26,6 +26,10 @@
         box-sizing: border-box;
 }
 
+.linkHash {
+        text-decoration: none;
+}
+
 .color_green {
         background-color: #00B800;
         color:white;
@@ -44,7 +48,8 @@
     .tags_list__logo_container {
             display: flex;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 17px;
+            margin-top:17px;
     }
 
     .tags_list__lists {
@@ -65,7 +70,7 @@
         margin-bottom: 36px;
     }
 
-    .tags_list__footer_soc-icon-lists {
+    .tags_list__footer_soc_icon_lists {
             padding: 0;
             margin:0;
             list-style: none;
@@ -73,15 +78,15 @@
             cursor: pointer;
     }
 
-    .tags_list__footer_soc-icon {
+    .tags_list__footer_soc_icon {
             width: 36px;
             height: 36px;
     }
-    .tags_list__footer_soc-icon-list:last-child {
+    .tags_list__footer_soc_icon_list:last-child {
         margin-right: 0;
     }
     
-    .tags_list__footer_soc-icon-list {
+    .tags_list__footer_soc_icon_list {
             margin-right: 26px;
     }
 

@@ -3,69 +3,74 @@ import React, {useEffect, useState} from 'react';
 import stylesMain from '../styles/MainContainer.module.scss';
 import HashTags from './HashTags';
 import CardMiddle from '../components/CardMiddle';
+import Head from 'next/head';
+import SignUpWeekly from '../components/SignUpWeekly/SignUpWeekly'
+import PopupAuth from "./PopupAuth/PopupAuth";
+import { observer } from "mobx-react-lite";
+import postStore from "../store/postStore";
+import {useRouter} from 'next/router';
+import categoryStore from "../store/categoryStore";
+import ScrollUp from "./scrollUp/ScroppUp";
 
+const MainContainer = observer(({cards, categories, children}) => {
 
+    const router = useRouter()
 
-
-
-function MainContainer({children}) {
-const [middleCard, serMiddleCard] = useState([])
-const [categories, setCategories] = useState([])
-
-useEffect( () => {
-    async function loadMiddleCard () {
-        const response = await fetch('https://api.moodboost.me/categories')
-        const response2 = await fetch('https://api.moodboost.me/posts')
-        const category = await response.json()
-        const card = await response2.json()
-
-        setCategories(category)
-        serMiddleCard(card[0])
+    function visibleLogoLife () {
+        if(router.pathname === ('/') || router.pathname === ('/category/[id]')) {
+            return true
+        } else {
+            return false
+        }
     }
-    loadMiddleCard()
-    
-}, [])
 
+    function escClose(event) {
+        if (event.target.classList.contains("openAside")) {
+            categoryStore.setIsAsideOpen(!categoryStore.isAsideOpen)
+        }
+    }
 
     return (
         <>
+       <Head>
+           <title>{categoryStore.oneCategory.name === undefined ? 'moodboost' : categoryStore.oneCategory.name}</title>
+           <link rel="shortcut icon" type="image/png" href="../public/image/favicons/android-icon-36x36.png" />
+       </Head>
         <Header />
+        
         <div id={stylesMain.app_moodboost} className={`container ${stylesMain.main_posts}`}>
-            <div  className={stylesMain.tags_list}>
-        <HashTags visibCategory={categories} /> 
+            <div onClick={(e) => escClose(e)} className={`${stylesMain.tags_list} ${categoryStore.isAsideOpen && stylesMain.openAside}`}>
+                <HashTags visibCategory={categories} /> 
             </div>
             <div id={stylesMain.page}>
+                
             <main  className={stylesMain.feed}>
+                {/* {visibleLogoLife() && <h4 className="feed__title">{`${categoryStore.oneCategory === undefined ? 'Life' : `Life-${categoryStore.oneCategory}`}`}</h4>} */}
+               { visibleLogoLife() && <h4 className={stylesMain.feed__title}>{`${categoryStore.oneCategory.name === undefined ? 'Life' : `Life-${categoryStore.oneCategory.name}`}`}</h4>}
                 {children}
-                {/* {visibleLogoLife() && <h4 className="feed__title">{`${category.selectedCategory.name === undefined ? 'Life' : `Life-${category.selectedCategory.name}`}`}</h4>} */}
-            {/* <Main scrollDownPost={scrollDownPost} hendleLikeClick={hendleLikeClick} card={post.posts} isLoad={isLoad} shareCard={shareCard} shareClick={shareClick}/> */}
             </main>
                 <section id={stylesMain.sidebar} data-v-c1e3d870>
                     <div>
-                    
+
                     </div>
-            
                     <div className={stylesMain.content_slidebar}>
                         <div className={stylesMain.content_slidebar_signWeekly}>
-                            {/* <SignUpWeekly /> */}
+                            <SignUpWeekly />
                         </div>
-                    
-                        {middleCard.map((card) => {
-                                return(
-                                    <CardMiddle card={card} key={card._id}/>
-                                )
-                            })
+                        {postStore?.middlePost?.map((card) => {
+                            return(
+                                <CardMiddle card={card} key={card._id}/>
+                            )
+                        })
                         }
                     </div>
                 </section>
             </div>
-            {/* {cardShare.url && cardShare.img && 
-            <PopupShare log={'https://moodboost.me/main/post/' + cardShare.url}  
-            img={'https://api.moodboost.me/' + cardShare.img.split('.').slice(0, -1).join('.') + "-" + 'medium' + '.' + cardShare.img.split('.').pop()} 
-            id={cardShare.id} shareClick={cardShare.clicks}/>} */}
         </div>
+        <PopupAuth />
+        <ScrollUp/>
     </>
     )
-}
+})
 
 export default MainContainer

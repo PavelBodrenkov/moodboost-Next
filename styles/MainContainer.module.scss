@@ -1,6 +1,13 @@
 .content_slidebar_signWeekly {
     height: 350px;
     margin-bottom: 30px;
+    background: url('../public/image/FormSignUp1.png') center no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     width: 100%;
+    
+     border-radius: 6px;
 }
 
 .content_slidebar {
@@ -30,6 +37,12 @@
 .main_posts {
     background-color: #F6FFF6;
 }
+
+.openAside {
+    left: 0;
+    transition: all .1s ease-out;
+}
+
 
 #page {
     padding-top: 20px;
